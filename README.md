@@ -78,15 +78,43 @@ Collaborative filtering, while powerful for recommendation systems, faces severa
 
 In this study, different methods available in literature and open-source have been tested.
 
-#### Koren Neighborhood Model
+#### 1.Koren Neighborhood Model
 
-To facilitate global optimization, Koren proposed a neighborhood model with global weights independent of a specific user. The similarity weight is solved via optimization rather than correlation matrix. Unlike some other models that used user-specific interpolation weights, this model uses global weights. These weights are learned from the data through optimization.
+To facilitate global optimization, Koren proposed a neighborhood model with global weights independent of a specific user. The similarity weight is solved via optimization rather than correlation matrix. Unlike some other models that used user-specific interpolation weights, this model uses global weights. These weights are learned from the data through optimization.⁴
 
 This approach emphasizes the influence of missing ratings and allows for more flexible and accurate predictions.
 
-The code and design is explained in the notebook: 
+The code and design is explained in the notebook. [[View Notebook]](https://github.com/MetinUnlu/music-recommendation/blob/master/Collaborative-notebooks/koren-Neighborhood%20.ipynb)
 
+Koren Neighborhood Model Mean Squared Error(MSE): 0.117
 
+#### 2.Surprise Library
+
+Surprise is a Python library containing collaborative-filtering-based recommendation systems. The library is well-built and implementation is really easy and straightforward. 
+
+Provide various ready-to-use [prediction
+  algorithms](https://surprise.readthedocs.io/en/stable/prediction_algorithms_package.html)
+  such as [baseline
+  algorithms](https://surprise.readthedocs.io/en/stable/basic_algorithms.html),
+  [neighborhood
+  methods](https://surprise.readthedocs.io/en/stable/knn_inspired.html), matrix
+  factorization-based (
+  [SVD](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVD),
+  [PMF](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#unbiased-note),
+  [SVD++](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVDpp),
+  [NMF](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.NMF)),
+  and [many
+  others](https://surprise.readthedocs.io/en/stable/prediction_algorithms_package.html).
+  Also, various [similarity
+  measures](https://surprise.readthedocs.io/en/stable/similarities.html)
+  (cosine, MSD, pearson...) are built-in.
+
+In Surprise library it is possible to see Koren neighborhood model as well, which is shown in the notebook. The SVD⁵ and kNNBaseline⁴
+
+The code and design is explained in the notebook. [[View Notebook]](https://github.com/MetinUnlu/music-recommendation/blob/master/Collaborative-notebooks/surp-recommender.ipynb)
+
+SVD method with Surprise Library MSE: 0.1107
+kNN Baseline(Koren Neighborhood Model) MSE: 0.1208
 
 
 references:
@@ -94,3 +122,5 @@ references:
 ¹ Shao, Y., & Xie, Y. H. (2019, November). Research on cold-start problem of collaborative filtering algorithm. In Proceedings of the 3rd International Conference on Big Data Research (pp. 67-71).
 ² Huang, Z., Chen, H., & Zeng, D. (2004). Applying associative retrieval techniques to alleviate the sparsity problem in collaborative filtering. ACM Transactions on Information Systems (TOIS), 22(1), 116-142.
 ³ Zhu, Z., He, Y., Zhao, X., Zhang, Y., Wang, J., & Caverlee, J. (2021, March). Popularity-opportunity bias in collaborative filtering. In Proceedings of the 14th ACM International Conference on Web Search and Data Mining (pp. 85-93).
+⁴ Yehuda Koren. Factor in the neighbors: scalable and accurate collaborative filtering. 2010. URL: https://courses.ischool.berkeley.edu/i290-dm/s11/SECURE/a1-koren.pdf.
+⁵ Francesco Ricci, Lior Rokach, Bracha Shapira, and Paul B. Kantor. Recommender Systems Handbook. 1st edition, 2010.
