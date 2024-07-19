@@ -78,7 +78,7 @@ Collaborative filtering, while powerful for recommendation systems, faces severa
 
 In this study, different methods available in literature and open-source have been tested.
 
-#### 1.Koren Neighborhood Model
+#### 1. Koren Neighborhood Model
 
 To facilitate global optimization, Koren proposed a neighborhood model with global weights independent of a specific user. The similarity weight is solved via optimization rather than correlation matrix. Unlike some other models that used user-specific interpolation weights, this model uses global weights. These weights are learned from the data through optimization.⁴
 
@@ -88,7 +88,7 @@ The code and design is explained in the notebook. [[View Notebook]](https://gith
 
 Koren Neighborhood Model Mean Squared Error(MSE): 0.117
 
-#### 2.Surprise Library
+#### 2. Surprise Library
 
 Surprise is a Python library containing collaborative-filtering-based recommendation systems. The library is well-built and implementation is really easy and straightforward. 
 
@@ -113,14 +113,68 @@ In Surprise library it is possible to see Koren neighborhood model as well, whic
 
 The code and design is explained in the notebook. [[View Notebook]](https://github.com/MetinUnlu/music-recommendation/blob/master/Collaborative-notebooks/surp-recommender.ipynb)
 
-SVD method with Surprise Library MSE: 0.1107
-kNN Baseline(Koren Neighborhood Model) MSE: 0.1208
+**SVD method with Surprise Library MSE: 0.1107**
+
+**kNN Baseline(Koren Neighborhood Model) MSE: 0.1208**
+
+### 3. LightFM Recommender
+
+LightFM is a Python implementation of a number of popular recommendation algorithms for both implicit and explicit feedback, including efficient implementation of BPR and WARP ranking losses. It's easy to use, fast (via multithreaded model estimation), and produces high quality results.
+
+It also makes it possible to incorporate both item and user metadata into the traditional matrix factorization algorithms. It represents each user and item as the sum of the latent representations of their features, thus allowing recommendations to generalise to new items (via item features) and to new users (via user features).
+
+The advantage of using LightFM is the matrix factorization that can work with sparse data efficiently, giving us the ability of using all the data we have available. On previous methods, only the 0.27% percent of data could be used, which corresponds to 10000 row of interactions. With LightFM we can work with all 3651141 rows. The LightFM uses its own Dataset object to load this data and stored data is in this format:
+
+<692376x28597 sparse matrix of type '<class 'numpy.int32'>'
+	with 3651141 stored elements in COOrdinate format>
+
+### 4. [Implicit](https://github.com/benfred/implicit) Library
+
+The final and main method used for the dataset is the building recommender model with Implicit Library. Similar to LightFM, Implicit also uses sparse matrixes to store and compute the data. Implicit offers many different recommender models, has easy-to-use and customize code structure, making it the main choice for the project.
+
+Implicit provides fast Python implementations of several different popular recommendation algorithms for
+implicit feedback datasets:
+
+ * Alternating Least Squares as described in the papers [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf) and [Applications of the Conjugate Gradient Method for Implicit
+Feedback Collaborative Filtering](https://pdfs.semanticscholar.org/bfdf/7af6cf7fd7bb5e6b6db5bbd91be11597eaf0.pdf).
+
+ * [Bayesian Personalized Ranking](https://arxiv.org/pdf/1205.2618.pdf).
+
+ * [Logistic Matrix Factorization](https://web.stanford.edu/~rezab/nips2014workshop/submits/logmat.pdf)
+
+ * Item-Item Nearest Neighbour models using Cosine, TFIDF or BM25 as a distance metric.
+
+All models have multi-threaded training routines, using Cython and OpenMP to fit the models in
+parallel among all available CPU cores.  In addition, the ALS and BPR models both have custom CUDA
+kernels - enabling fitting on compatible GPU's. Approximate nearest neighbours libraries such as [Annoy](https://github.com/spotify/annoy), [NMSLIB](https://github.com/searchivarius/nmslib)
+and [Faiss](https://github.com/facebookresearch/faiss) can also be used by Implicit to [speed up
+making recommendations](https://www.benfrederickson.com/approximate-nearest-neighbours-for-recommender-systems/).
+
+The tested methods are AlternatingLeastSquares, BayesianPersonalizedRanking, LogisticMatrixFactorization.
+
+Each method was also tested with different parameters. The resulting scores are like the following:
+
+| Method   | Model                        | Training Parameters                                                                                          | Precision | Map    | NDCG   | AUC   |
+|----------|------------------------------|-------------------------------------------------------------------------------------------------------------|-----------|--------|--------|-------|
+| Implicit | AlternatingLeastSquares      | factors=50, iterations=1, regularization=0.01, use_gpu=implicit.gpu.HAS_CUDA                                 | 0.03463   | 0.01734| 0.02554| 0.52038|
+| Implicit | AlternatingLeastSquares      | factors=50, iterations=30, regularization=0.01, use_gpu=implicit.gpu.HAS_CUDA                                | 0.0709    | 0.03791| 0.05182| 0.53452|
+| Implicit | BayesianPersonalizedRanking  | factors=50, iterations=100, regularization=0.01                                                             | 0.1336    | 0.0636 | 0.0885 | 0.5627 |
+| Implicit | BayesianPersonalizedRanking  | factors=50, iterations=100, regularization=0.01                                                             | 0.16506   | 0.0854 | 0.11548| 0.58127|
+| Implicit | BayesianPersonalizedRanking  | factors=50, iterations=1200, regularization=0.01                                                            | 0.1799    | 0.092  | 0.12448| 0.58753|
+| Implicit | LogisticMatrixFactorization  | factors=50, iterations=20, regularization=0.01                                                              | 0.0094847 | 0.0039269| 0.006447| 0.50585|
+| Implicit | LogisticMatrixFactorization  | factors=50, iterations=350, regularization=0.01                                                             | 0.03328   | 0.01167| 0.0183 | 0.51384|
+
+Best evaluation is achieved with Bayesian Personalized Ranking, 1200 Iterations.
 
 
 references:
 ----
 ¹ Shao, Y., & Xie, Y. H. (2019, November). Research on cold-start problem of collaborative filtering algorithm. In Proceedings of the 3rd International Conference on Big Data Research (pp. 67-71).
+
 ² Huang, Z., Chen, H., & Zeng, D. (2004). Applying associative retrieval techniques to alleviate the sparsity problem in collaborative filtering. ACM Transactions on Information Systems (TOIS), 22(1), 116-142.
+
 ³ Zhu, Z., He, Y., Zhao, X., Zhang, Y., Wang, J., & Caverlee, J. (2021, March). Popularity-opportunity bias in collaborative filtering. In Proceedings of the 14th ACM International Conference on Web Search and Data Mining (pp. 85-93).
+
 ⁴ Yehuda Koren. Factor in the neighbors: scalable and accurate collaborative filtering. 2010. URL: https://courses.ischool.berkeley.edu/i290-dm/s11/SECURE/a1-koren.pdf.
+
 ⁵ Francesco Ricci, Lior Rokach, Bracha Shapira, and Paul B. Kantor. Recommender Systems Handbook. 1st edition, 2010.
