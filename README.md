@@ -131,8 +131,10 @@ It also makes it possible to incorporate both item and user metadata into the tr
 
 The advantage of using LightFM is the matrix factorization that can work with sparse data efficiently, giving us the ability of using all the data we have available. On previous methods, only the 0.27% percent of data could be used, which corresponds to 10000 row of interactions. With LightFM we can work with all 3651141 rows. The LightFM uses its own Dataset object to load this data and stored data is in this format:
 
+```markdown
 <692376x28597 sparse matrix of type '<class 'numpy.int32'>'
 	with 3651141 stored elements in COOrdinate format>
+```
 
 #### 4. [Implicit](https://github.com/benfred/implicit) Library
 
