@@ -136,6 +136,8 @@ The advantage of using LightFM is the matrix factorization that can work with sp
 	with 3651141 stored elements in COOrdinate format>
 ```
 
+The code implementation of LightFM Recommender can be found in [notebook](https://github.com/MetinUnlu/music-recommendation/blob/master/Collaborative-notebooks/lightfm_recommender.ipynb). In recommendation from LightFM, bias was observed where same musics are recommended to different users repeatedly.
+
 #### 4. [Implicit](https://github.com/benfred/implicit) Library
 
 The final and main method used for the dataset is the recommender model with Implicit Library. Similar to LightFM, Implicit also uses sparse matrixes to store and compute the data, giving us opportunities to use all the 3 million rows. Implicit offers many different recommender models, has an easy-to-use and customizable code structure, making it the main choice for the project.
