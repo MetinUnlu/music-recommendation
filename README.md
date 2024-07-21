@@ -191,9 +191,9 @@ recommender = ImplicitRecommender(artist_retriever, implict_model)
 recommender.fit(train)
 ```
 
-The code snippet of an example of how to load data and train using Impilicit is shown above. The user-item interaction and item datasets are loaded using method of the library. When the data is loaded correctly, the implicit library model traning methods can easily be defined and trained. [Full code] (https://github.com/MetinUnlu/music-recommendation/blob/master/music-recommendation/jupyter_data.ipynb). 
+The code snippet of an example of how to load data and train using Impilicit is shown above. The user-item interaction and item datasets are loaded using method of the library. When the data is loaded correctly, the implicit library model traning methods can easily be defined and trained. [Full code](https://github.com/MetinUnlu/music-recommendation/blob/master/music-recommendation/jupyter_data.ipynb). 
 
-The data loading may differ from dataset to dataset, thus for this project, modification in data loading method was done. [Modified Implicit Data Loader] (https://github.com/MetinUnlu/music-recommendation/blob/master/music-recommendation/implicitMusic.py)
+The data loading may differ from dataset to dataset, thus for this project, modification in data loading method was done. [Modified Implicit Data Loader](https://github.com/MetinUnlu/music-recommendation/blob/master/music-recommendation/implicitMusic.py)
 
 After the training of the model, it can be saved and loaded easily:
 
