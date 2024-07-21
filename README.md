@@ -217,10 +217,15 @@ for artist, track, score in zip(artists, tracks, scores):
 ```
 Output:
 [13450 18488  1296  4494   960]
+
 Love You Lately by Daniel Powter: 4.25557279586792
+
 L'impasse by Coralie Clément: 4.092816352844238
+
 Live Like We're Dying by Kris Allen: 3.987139940261841
+
 What's Left of Me by blessthefall: 3.9387805461883545
+
 From Where You Are by Lifehouse: 3.9146549701690674
 
 This model gives really accurate recommendations. However in interaction dataset the number of users with three or less music interaction is more than 50% of dataset. For such users, the recommendation will be biased and will have cold-start problem. To remedy this, this model is used in uniform with a simple Content-Based Recommender.
@@ -259,22 +264,35 @@ We will use the function above to return recommendation for Content-Based model,
 To combine both collaborative and content-based method, we can use thresholds. In my [recommendation system](https://github.com/MetinUnlu/music-recommendation/blob/master/music-recommendation/Collab-and-Content-recommender.ipynb), I have used the following:
 
 If the unique listened music count is <=3: Return 10 recommendation from Content-Based model
+
 If the unique listened music count is >3 and <=5: Return 5 recommendation from Content-Based model, 5 from Collaborative Filtering Model
+
 If the unique listened music count is >5: Return 3 recommendation from Content-Based model, 7 from Collaborative Filtering Model
 
 And example output is given below:
+
 For user who have listened 5 music
 
  Recommended Musics:
+
 Some Kinda Love by The Velvet Underground (Collaborative Filtering Based)
+
 Age of Consent by New Order (Collaborative Filtering Based)
+
 I'm Sleeping in a Submarine by Arcade Fire (Collaborative Filtering Based)
+
 Childhood Remembered by Kevin Kern (Collaborative Filtering Based)
+
 Thieves Like Us by New Order (Collaborative Filtering Based)
+
 Kein Mitleid by Eisbrecher (Content Based)
+
 Tostaky (Le Continent) by Noir Désir (Content Based)
+
 Easy Love by MSTRKRFT (Content Based)
+
 Avantasia by Avantasia (Content Based)
+
 Mysterious Skies by ATB (Content Based)
 
 
