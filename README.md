@@ -16,6 +16,12 @@ Social media platforms, such as Instagram, leverage **vast amounts** of user-gen
 A typical user session, lasting just a few minutes, can produce hundreds of data points. When scaled to a user base of billions, this results in an enormous volume of data.
 The challenge for these platforms lies in efficiently collecting and processing this data. The goal is to transform these interactions into meaningful insights that drive personalized content recommendations for each user.
 
+**A small information on dataset**
+
+The dataset is taken from Kaggle, [Million Song Dataset + Spotify + Last.fm](https://www.kaggle.com/datasets/undefinenull/million-song-dataset-spotify-lastfm?select=Music+Info.csv)
+
+The interaction data of user listening history is normalized for each users music playcounts. After normalization if user has more than one listening count for a music count, the remaining music listenings with one listening count will normalized to zero. To decrease the dimension of data and since 0 would not deliver an information for models, all the rows where normalized playcount is 0. This decrease the row count of dataset from 9.711.301 to 3.651.141. Note that in this process no unique user is removed. This data manipulation can be observed in the [notebook](https://github.com/MetinUnlu/music-recommendation/blob/master/Collaborative-notebooks/dataset_invest.ipynb).
+
 In this project we will cover:
 - NVIDIA Merlin Recommender System
 - Collaborative Filtering
