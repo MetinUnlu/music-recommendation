@@ -69,7 +69,7 @@ For our subject of course, the solution is necessary to be interpretable, thus w
 
 ### Collaborative Filtering
 
-Collaborative filtering is an information retrieval technique that suggests items to users by analyzing the interaction of other users who share similar preferences and behaviors (URL1). In another word, collaborative filtering uses the system that groups the users who show the same behavior and use general group characteristics to recommend items to a target user. 
+Collaborative filtering is an information retrieval technique that suggests items to users by analyzing the interaction of other users who share similar preferences and behaviors. In another word, collaborative filtering uses the system that groups the users who show the same behavior and use general group characteristics to recommend items to a target user. 
 
 The main problems in collaborative filtering are:
 Collaborative filtering, while powerful for recommendation systems, faces several key challenges:
