@@ -169,7 +169,7 @@ Each method was also tested with different parameters. The resulting scores are 
 | AlternatingLeastSquares     | factors=50, iterations=1, regularization=0.01, use_gpu=implicit.gpu.HAS_CUDA  | 0.03463       | 0.01734   | 0.02554  | 0.52038 |
 | AlternatingLeastSquares     | factors=50, iterations=30, regularization=0.01, use_gpu=implicit.gpu.HAS_CUDA | 0.0709        | 0.03791   | 0.05182  | 0.53452 |
 | BayesianPersonalizedRanking | factors=50, iterations=100, regularization=0.01                               | 0.1336        | 0.0636    | 0.0885   | 0.5627  |
-| BayesianPersonalizedRanking | factors=50, iterations=100, regularization=0.01                               | 0.16506       | 0.0854    | 0.11548  | 0.58127 |
+| BayesianPersonalizedRanking | factors=50, iterations=400, regularization=0.01                               | 0.16506       | 0.0854    | 0.11548  | 0.58127 |
 | BayesianPersonalizedRanking | factors=50, iterations=1200, regularization=0.01                              | 0.1799        | 0.092     | 0.12448  | 0.58753 |
 | LogisticMatrixFactorization | factors=50, iterations=20, regularization=0.01                                | 0.0094847     | 0.0039269 | 0.006447 | 0.50585 |
 | LogisticMatrixFactorization | factors=50, iterations=350, regularization=0.01                               | 0.03328       | 0.01167   | 0.0183   | 0.51384 |
