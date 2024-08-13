@@ -65,14 +65,13 @@ In this example the Merlin Models library is used to train RecSys architectures 
 
 NVIDIA Merlin uses Dask and RAPIDS cuDF. DASK**[Dask](https://www.dask.org/)**<br> is a Python library for parallel and distributed computing. It allows computing to scale your data workflows from a single machine to a cluster, multiple CPU cores can be used to process computation in parallel and it also gives easy capability to adjust RAM dedicated to each solver. **[RAPIDS cuDF](https://github.com/rapidsai/cudf)**<br> is library of NVIDIA which has the main capabilities of pandas Dataframe but powered with GPU loading and computing. cuDF leverages libcudf, a blazing-fast C++/CUDA dataframe library and the Apache Arrow columnar format to provide a GPU-accelerated pandas API.
 
-For our subject of course, the solution is necessary to be interpretable, thus we move on to next recommendation system.
+For our subject of course, the solution is necessary to be interpretable. Nvidia Merlin utilizes neural networks which are mostly black boxes, thus we move on to next recommendation system.
 
 ### Collaborative Filtering
 
 Collaborative filtering is an information retrieval technique that suggests items to users by analyzing the interaction of other users who share similar preferences and behaviors. In another word, collaborative filtering uses the system that groups the users who show the same behavior and use general group characteristics to recommend items to a target user. 
 
 The main problems in collaborative filtering are:
-Collaborative filtering, while powerful for recommendation systems, faces several key challenges:
 
 1. **Cold Start Problem**: This occurs when there is insufficient data about new users or items, making it difficult to provide accurate recommendations¹.
 
